@@ -28,9 +28,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      - name: Setup Snyk + snyk-to-html # For information about the required commands for generating an HTML report see https://github.com/snyk/snyk-to-html
+      - name: Setup the repo and install npm packages
         run: |
           npm install
+
+      - name: Setup Snyk + snyk-to-html # For information about the required commands for generating an HTML report see https://github.com/snyk/snyk-to-html
+        run: |
           npm install snyk -g
           npm install snyk-filter -g
           npm install snyk-to-html -g
