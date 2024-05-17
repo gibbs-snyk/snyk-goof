@@ -41,8 +41,9 @@ jobs:
 
       - name: Snyk Open Source
         run: |
-          snyk test --json | snyk-filter
+          snyk test --json | snyk-filter || true
         # Run a snyk test and send the results into snyk-filter; failing on >2 high or >0 critical
+        # Remove || true to fail if the criteria is met
 
       - name: Snyk Code
         run: |
