@@ -36,8 +36,8 @@ jobs:
 
       - name: Snyk Open Source
         run: |
-          snyk monitor
-        # For a list of additional available flags/options see: https://docs.snyk.io/snyk-cli/commands
+          snyk test --json | snyk-filter
+        # Run a snyk test and send the results into snyk-filter; failing on >2 high or >0 critical
 
       - name: Snyk Code
         run: |
