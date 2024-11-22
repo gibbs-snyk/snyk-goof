@@ -19,22 +19,8 @@ jobs:
           name: snyk-filter-master
           path: snyk-workflow-master/snyk-filter-master/snyk.yml
 
-  test-and-calling-workflow:
-    needs: collect-snyk-filter-master  # Ensures this job waits for the previous one
-    runs-on: ubuntu-latest
-    env:
+
+  calling-workflow:
+    uses: gibbs-snyk/snyk-workflow-master/.github/workflows/snyk-workflow-master.yml@main
+    secrets:
       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-  
-    steps:
-      - name: Download snyk.yml file artifact into snyk-filter-master subfolder
-        uses: actions/download-artifact@v4
-        with:
-          name: snyk-filter-master
-          path: snyk-filter-master
-
-      - name: Display snyk.yml file contents
-        run: cat ./snyk-filter-master/snyk.yml
-
-      - name: Call snyk-workflow-master
-        uses: gibbs-snyk/snyk-workflow-master/.github/workflows/snyk-workflow-master.yml@main
-  
