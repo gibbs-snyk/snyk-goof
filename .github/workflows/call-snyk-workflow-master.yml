@@ -13,24 +13,21 @@ jobs:
           repository: gibbs-snyk/snyk-workflow-master
           path: 'snyk-workflow-master'  # This is where the repo is checked out
 
-      - name: List files to verify location of .snyk
-        run: ls -R snyk-workflow-master/snyk-filter-master  # Verify that .snyk exists
-
-      - name: Upload .snyk file as artifact
+      - name: Upload snyk.yml file as artifact
         uses: actions/upload-artifact@v3
         with:
           name: snyk-filter-master
-          path: snyk-workflow-master/snyk-filter-master/.snyk  # Corrected path
+          path: snyk-workflow-master/snyk-filter-master/snyk.yml
 
   test:
     needs: collect-snyk-filter-master  # Ensures this job waits for the previous one
     runs-on: ubuntu-latest
   
     steps:
-      - name: Download .snyk file artifact
+      - name: Download snyk.yml file artifact
         uses: actions/download-artifact@v3
         with:
           name: snyk-filter-master
 
-      - name: Display .snyk file contents
-        run: cat ./snyk-filter-master/.snyk  # Adjusted to where the file will be in the workspace
+      - name: Display snyk.yml file contents
+        run: cat ./snyk-filter-master/snyk.yml
