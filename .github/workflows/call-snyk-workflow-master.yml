@@ -3,8 +3,20 @@ name: Call snyk-workflow-master
 on: workflow_dispatch
 
 jobs:
-  calling-workflow:
-    uses: gibbs-snyk/snyk-workflow-master/.github/workflows/snyk-workflow-master.yml@main
 
-    secrets:
-      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  collect-snyk-filter-master:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Checkout .snyk file from private repo
+        uses: actions/checkout@v4
+        with:
+          repository: gibbs-snyk/snyk-workflow-master
+          path: 'snyk-filter-master'
+
+  test:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Checkout .snyk file from private repo
+        run: echo "./snyk-filter-master/.snyk"
