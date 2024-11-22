@@ -24,10 +24,11 @@ jobs:
     runs-on: ubuntu-latest
   
     steps:
-      - name: Download snyk.yml file artifact
+      - name: Download snyk.yml file artifact into snyk-filter-master subfolder
         uses: actions/download-artifact@v3
         with:
           name: snyk-filter-master
+          path: snyk-filter-master 
 
       - name: Display snyk.yml file contents
         run: cat ./snyk-filter-master/snyk.yml
