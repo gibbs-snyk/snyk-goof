@@ -1,8 +1,6 @@
 name: Snyk SCA, Code, IaC and Container CLI monitor example
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
