@@ -11,13 +11,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: gibbs-snyk/snyk-workflow-master
-          path: 'snyk-filter-master'
+          path: 'snyk-workflow-master'
 
       - name: Upload .snyk file as artifact
         uses: actions/upload-artifact@v3
         with:
           name: snyk-filter-master
-          path: snyk-filter-master/.snyk
+          path: snyk-workflow-master/snyk-filter-master/.snyk
 
   test:
     needs: collect-snyk-filter-master  # Ensures this job waits for the previous one
